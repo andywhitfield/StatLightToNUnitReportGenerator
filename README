@@ -1,0 +1,1 @@
+A simple application to convert StatLight test report output files to the NUnit output xml format. For use in a Jenkins automated build project.
