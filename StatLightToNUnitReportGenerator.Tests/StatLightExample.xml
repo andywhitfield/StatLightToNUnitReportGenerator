@@ -1,0 +1,24 @@
+﻿<StatLightTestResults total="6" ignored="1" failed="2" dateRun="2011-04-09 21:06:03">
+  <tests xapFileName="bin\Debug\SomeApplication.Tests.xap">
+    <test name="SomeApplication.Tests.ATest.My_first_test." resulttype="Passed" timeToComplete="00:00:00" />
+    <test name="SomeApplication.Tests.Util.My_second_test.Another_test." resulttype="Passed" timeToComplete="00:00:00" />
+    <test name="SomeApplication.Tests.Util.My_second_test.Assert_failure." resulttype="Failed" timeToComplete="00:00:00.0090005">
+      <exceptionInfo>
+        <message>Assert.Fail failed. test</message>
+        <stackTrace>
+          at Microsoft.VisualStudio.TestTools.UnitTesting.Assert.HandleFail(String assertionName, String message, Object[] parameters)
+          at Microsoft.VisualStudio.TestTools.UnitTesting.Assert.Fail(String message)
+          at SomeApplication.Tests.Util.My_second_test.Assert_failure()</stackTrace>
+      </exceptionInfo>
+    </test>
+    <test name="SomeApplication.Tests.Util.My_second_test.Some_other_test." resulttype="Passed" timeToComplete="00:00:00.0010001" />
+    <test name="SomeApplication.Tests.This_one_is_disabled." resulttype="Ignored" timeToComplete="00:00:00" />
+    <test name="SomeApplication.Tests.Util.My_second_test.Throws_exception." resulttype="Failed" timeToComplete="00:00:00.0010000">
+      <exceptionInfo>
+        <message>Specified method is not supported.</message>
+        <stackTrace>
+          at SomeApplication.Tests.Util.ShellViewModelTest.Throws_exception()</stackTrace>
+      </exceptionInfo>
+    </test>
+  </tests>
+</StatLightTestResults>

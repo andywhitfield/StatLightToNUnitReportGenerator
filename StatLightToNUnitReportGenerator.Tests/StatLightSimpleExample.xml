@@ -1,0 +1,5 @@
+﻿<StatLightTestResults total="1" ignored="0" failed="0" dateRun="2011-04-09 21:06:03">
+  <tests xapFileName="bin\Debug\SomeApplication.Tests.xap">
+    <test name="SomeApplication.Tests.ATest.My_first_test." resulttype="Passed" timeToComplete="00:00:00" />
+  </tests>
+</StatLightTestResults>
