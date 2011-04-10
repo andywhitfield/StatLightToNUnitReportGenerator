@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 using System.Text;
 using System.IO;
 
@@ -19,12 +20,15 @@ namespace StatLightToNUnitReportGenerator
 
         public StatLightResult Parse()
         {
+            var inputXml = XDocument.Load(statlightInput);
+
             return new StatLightResult
             {
-                Name= "bin\\Debug\\SomeApplication.Tests.xap",
-                TotalTests = 1,
-                TotalIgnored = 0,
-                TotalFailed = 0
+                Name= (string)inputXml.Descendants("tests").First().Attribute("xapFileName"),
+                TotalTests = (int)inputXml.Root.Attribute("total"),
+                TotalIgnored = (int)inputXml.Root.Attribute("ignored"),
+                TotalFailed = (int)inputXml.Root.Attribute("failed"),
+                DateRun = DateTime.ParseExact((string)inputXml.Root.Attribute("dateRun"), "yyyy-MM-dd HH:mm:ss", null)
             };
         }
     }

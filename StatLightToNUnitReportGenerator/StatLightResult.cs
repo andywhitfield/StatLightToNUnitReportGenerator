@@ -8,6 +8,7 @@ namespace StatLightToNUnitReportGenerator
     public class StatLightResult
     {
         public string Name { get; internal set; }
+        public DateTime DateRun { get; internal set; }
         public int TotalTests { get; internal set; }
         public int TotalIgnored { get; internal set; }
         public int TotalFailed { get; internal set; }
