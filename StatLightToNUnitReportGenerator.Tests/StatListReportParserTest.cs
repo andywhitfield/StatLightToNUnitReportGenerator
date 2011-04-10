@@ -14,8 +14,7 @@ namespace StatLightToNUnitReportGenerator.Tests
         [Test]
         public void Should_parse_simple_sample_into_statlight_object_model()
         {
-            var outputReader = new StringWriter();
-            var parser = new StatLightReportParser(new StringReader(Resources.StatLightSimpleExample), outputReader);
+            var parser = new StatLightReportParser(new StringReader(Resources.StatLightSimpleExample));
             var result = parser.Parse();
             Assert.AreEqual("bin\\Debug\\SomeApplication.Tests.xap", result.Name);
             Assert.AreEqual(1, result.TotalTests);

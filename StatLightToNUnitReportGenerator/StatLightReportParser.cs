@@ -10,12 +10,10 @@ namespace StatLightToNUnitReportGenerator
     public class StatLightReportParser
     {
         private readonly TextReader statlightInput;
-        private readonly TextWriter nunitOutput;
 
-        public StatLightReportParser(TextReader statlightInput, TextWriter nunitOutput)
+        public StatLightReportParser(TextReader statlightInput)
         {
             this.statlightInput = statlightInput;
-            this.nunitOutput = nunitOutput;
         }
 
         public StatLightResult Parse()
