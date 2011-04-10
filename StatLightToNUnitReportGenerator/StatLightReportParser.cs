@@ -22,7 +22,7 @@ namespace StatLightToNUnitReportGenerator
         {
             var inputXml = XDocument.Load(statlightInput);
 
-            return new StatLightResult
+            return new StatLightResult(inputXml.Descendants("test"))
             {
                 Name= (string)inputXml.Descendants("tests").First().Attribute("xapFileName"),
                 TotalTests = (int)inputXml.Root.Attribute("total"),

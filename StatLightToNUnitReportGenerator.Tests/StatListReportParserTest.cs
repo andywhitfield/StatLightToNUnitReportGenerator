@@ -21,6 +21,12 @@ namespace StatLightToNUnitReportGenerator.Tests
             Assert.AreEqual(1, result.TotalTests);
             Assert.AreEqual(0, result.TotalIgnored);
             Assert.AreEqual(0, result.TotalFailed);
+
+            var tests = result.Tests;
+            Assert.AreEqual(1, tests.Count());
+            Assert.AreEqual("SomeApplication.Tests.ATest.My_first_test.", tests.ElementAt(0).Name);
+            Assert.True(tests.ElementAt(0).Passed);
+            Assert.AreEqual(TimeSpan.Parse("01:02:03.45678"), tests.ElementAt(0).ExecutionTime);
         }
     }
 }
