@@ -17,6 +17,9 @@ namespace StatLightToNUnitReportGenerator
                 case "Passed":
                     Passed = true;
                     break;
+                case "Ignored":
+                    Ignored = true;
+                    break;
             }
             ExecutionTime = TimeSpan.Parse((string)xml.Attribute("timeToComplete"));
         }
