@@ -20,5 +20,14 @@ namespace StatLightToNUnitReportGenerator
         {
             Tests = testNodes.Select(x => new StatLightTestResult(x));
         }
+        public StatLightResult(string name, DateTime dateRun, IEnumerable<StatLightTestResult> tests)
+        {
+            Name = name;
+            DateRun = dateRun;
+            TotalTests = tests.Count();
+            TotalIgnored = tests.Count(x => x.Ignored);
+            TotalFailed = tests.Count(x => x.Failed);
+            Tests = tests;
+        }
     }
 }

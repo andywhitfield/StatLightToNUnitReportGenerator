@@ -31,16 +31,29 @@ namespace StatLightToNUnitReportGenerator
                     new XAttribute("success", result.TotalFailed > 0 ? "False" : "True"),
                     new XElement("results",
                         from r in result.Tests
-                        select new XElement("test-case",
-                            new XAttribute("name", r.Name),
-                            new XAttribute("executed", r.Ignored ? "False" : "True"),
-                            new XAttribute("result", r.Ignored ? "Ignored" : r.Failed ? "Failure" : "Success"),
-                            new XAttribute("success", r.Passed ? "True" : "False"),
-                            new XAttribute("time", r.ExecutionTime.ToString(@"hh\:mm\:ss\.FFFFFF"))))
+                        select CreateTestCaseElement(r))
                     )
                 );
 
             xml.Save(writer);
+        }
+
+        private static XElement CreateTestCaseElement(StatLightTestResult r)
+        {
+            XElement element = new XElement("test-case",
+                                        new XAttribute("name", r.Name),
+                                        new XAttribute("executed", r.Ignored ? "False" : "True"),
+                                        new XAttribute("time", r.ExecutionTime.ToString(@"hh\:mm\:ss\.ffff")),
+                                        new XAttribute("result", r.Ignored ? "Ignored" : r.Failed ? "Failure" : "Success"));
+            if (!r.Ignored)
+                element.Add(new XAttribute("success", r.Passed ? "True" : "False"));
+            
+            if (r.Failed)
+                element.Add(new XElement("failure",
+                    new XElement("message", r.FailureMessage),
+                    new XElement("stack-trace", new XCData(r.FailureStackTrace))));
+
+            return element;
         }
     }
 }

@@ -20,6 +20,17 @@ namespace StatLightToNUnitReportGenerator
             }
             ExecutionTime = TimeSpan.Parse((string)xml.Attribute("timeToComplete"));
         }
+        public StatLightTestResult(string name, bool passed, bool ignored, bool failed,
+            string failureMessage, string failureStackTrace, TimeSpan executionTime)
+        {
+            Name = name;
+            Passed = passed;
+            Ignored = ignored;
+            Failed = failed;
+            FailureMessage = failureMessage;
+            FailureStackTrace = failureStackTrace;
+            ExecutionTime = executionTime;
+        }
 
         public string Name { get; private set; }
         public bool Passed { get; private set; }
