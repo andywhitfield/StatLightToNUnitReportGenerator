@@ -21,8 +21,10 @@ namespace StatLightToNUnitReportGenerator.Tests
             Console.WriteLine(writer.ToString());
             Assert.AreEqual(@"<?xml version=""1.0"" encoding=""utf-16""?>
 <test-results name=""bin\Debug\SomeApplication.Tests.xap"" total=""1"" not-run=""0"" failures=""0"" date=""2011-04-09"" time=""21:06:03"">
-  <test-suite type=""Namespace"" executed=""True"" result=""Failure"" success=""False"">
-    <results />
+  <test-suite type=""Namespace"" executed=""True"" result=""Success"" success=""True"">
+    <results>
+      <test-case name=""SomeApplication.Tests.ATest.My_first_test."" executed=""True"" result=""Success"" success=""True"" time=""01:02:03.45678"" />
+    </results>
   </test-suite>
 </test-results>", writer.ToString());
         }

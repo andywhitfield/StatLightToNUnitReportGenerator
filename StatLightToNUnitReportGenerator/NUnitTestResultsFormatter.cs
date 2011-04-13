@@ -27,11 +27,16 @@ namespace StatLightToNUnitReportGenerator
                 new XElement("test-suite",
                     new XAttribute("type", "Namespace"),
                     new XAttribute("executed", "True"),
-                    new XAttribute("result", "Failure"),
-                    new XAttribute("success", "False"),
+                    new XAttribute("result", result.TotalFailed > 0 ? "Failure" : "Success"),
+                    new XAttribute("success", result.TotalFailed > 0 ? "False" : "True"),
                     new XElement("results",
-                        // select all test cases...
-                        null)
+                        from r in result.Tests
+                        select new XElement("test-case",
+                            new XAttribute("name", r.Name),
+                            new XAttribute("executed", r.Ignored ? "False" : "True"),
+                            new XAttribute("result", r.Ignored ? "Ignored" : r.Failed ? "Failure" : "Success"),
+                            new XAttribute("success", r.Passed ? "True" : "False"),
+                            new XAttribute("time", r.ExecutionTime.ToString(@"hh\:mm\:ss\.FFFFFF"))))
                     )
                 );
 
