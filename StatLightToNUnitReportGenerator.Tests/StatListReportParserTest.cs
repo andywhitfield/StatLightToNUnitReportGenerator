@@ -46,5 +46,29 @@ namespace StatLightToNUnitReportGenerator.Tests
             Assert.False(ignored.Passed);
             Assert.False(ignored.Failed);
         }
+
+        [Test]
+        public void Given_failed_tests_should_parse_as_failed_state_and_populate_message_and_stack_trace()
+        {
+            var parser = new StatLightReportParser(new StringReader(Resources.StatLightExample));
+            var result = parser.Parse();
+            Assert.AreEqual("bin\\Debug\\SomeApplication.Tests.xap", result.Name);
+            Assert.AreEqual(6, result.TotalTests);
+            Assert.AreEqual(1, result.TotalIgnored);
+            Assert.AreEqual(2, result.TotalFailed);
+
+            var tests = result.Tests;
+            Assert.AreEqual(6, tests.Count());
+            var failed = tests.FirstOrDefault(x => x.Name == "SomeApplication.Tests.Util.My_second_test.Assert_failure.");
+            Assert.IsNotNull(failed, "Didn't find test!");
+            Assert.True(failed.Failed);
+            Assert.False(failed.Ignored);
+            Assert.False(failed.Passed);
+            Assert.AreEqual("Assert.Fail failed. test", failed.FailureMessage);
+            Assert.AreEqual("\n" +
+"          at Microsoft.VisualStudio.TestTools.UnitTesting.Assert.HandleFail(String assertionName, String message, Object[] parameters)\n" +
+"          at Microsoft.VisualStudio.TestTools.UnitTesting.Assert.Fail(String message)\n" +
+"          at SomeApplication.Tests.Util.My_second_test.Assert_failure()", failed.FailureStackTrace);
+        }
     }
 }

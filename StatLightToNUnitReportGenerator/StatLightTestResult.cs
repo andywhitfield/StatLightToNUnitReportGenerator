@@ -20,8 +20,15 @@ namespace StatLightToNUnitReportGenerator
                 case "Ignored":
                     Ignored = true;
                     break;
+                case "Failed":
+                    Failed = true;
+                    break;
             }
             ExecutionTime = TimeSpan.Parse((string)xml.Attribute("timeToComplete"));
+
+            var exceptionInfo = xml.Element("exceptionInfo");
+            FailureMessage = Failed && exceptionInfo != null ? (string)exceptionInfo.Element("message") : "";
+            FailureStackTrace = Failed && exceptionInfo != null ? (string)exceptionInfo.Element("stackTrace") : "";
         }
         public StatLightTestResult(string name, bool passed, bool ignored, bool failed,
             string failureMessage, string failureStackTrace, TimeSpan executionTime)
