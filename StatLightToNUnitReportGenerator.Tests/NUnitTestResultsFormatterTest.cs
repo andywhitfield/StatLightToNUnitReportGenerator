@@ -21,7 +21,7 @@ namespace StatLightToNUnitReportGenerator.Tests
             Console.WriteLine(writer.ToString());
             Assert.AreEqual(@"<?xml version=""1.0"" encoding=""utf-16""?>
 <test-results name=""bin\Debug\SomeApplication.Tests.xap"" total=""1"" not-run=""0"" failures=""0"" date=""2011-04-09"" time=""21:06:03"">
-  <test-suite type=""Namespace"" executed=""True"" result=""Success"" success=""True"">
+  <test-suite type=""TestFixture"" name=""SomeApplication.Tests.xap"" executed=""True"" result=""Success"" success=""True"">
     <results>
       <test-case name=""SomeApplication.Tests.ATest.My_first_test."" executed=""True"" time=""01:02:03.4567"" result=""Success"" success=""True"" />
     </results>
@@ -42,7 +42,7 @@ namespace StatLightToNUnitReportGenerator.Tests
             Console.WriteLine(writer.ToString());
             Assert.AreEqual(@"<?xml version=""1.0"" encoding=""utf-16""?>
 <test-results name=""test"" total=""2"" not-run=""1"" failures=""0"" date=""2011-04-09"" time=""00:00:00"">
-  <test-suite type=""Namespace"" executed=""True"" result=""Success"" success=""True"">
+  <test-suite type=""TestFixture"" name=""test"" executed=""True"" result=""Success"" success=""True"">
     <results>
       <test-case name=""test1"" executed=""True"" time=""00:00:00.0000"" result=""Success"" success=""True"" />
       <test-case name=""test2"" executed=""False"" time=""00:00:00.0000"" result=""Ignored"" />
@@ -65,7 +65,7 @@ namespace StatLightToNUnitReportGenerator.Tests
             Console.WriteLine(writer.ToString());
             Assert.AreEqual(@"<?xml version=""1.0"" encoding=""utf-16""?>
 <test-results name=""test"" total=""3"" not-run=""1"" failures=""1"" date=""2011-04-09"" time=""00:00:00"">
-  <test-suite type=""Namespace"" executed=""True"" result=""Failure"" success=""False"">
+  <test-suite type=""TestFixture"" name=""test"" executed=""True"" result=""Failure"" success=""False"">
     <results>
       <test-case name=""test1"" executed=""True"" time=""00:00:00.0000"" result=""Success"" success=""True"" />
       <test-case name=""test2"" executed=""False"" time=""00:00:00.0000"" result=""Ignored"" />
